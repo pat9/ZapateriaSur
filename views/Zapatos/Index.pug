@@ -1,0 +1,25 @@
+extends ../Admin.pug
+
+
+block migajas
+      <h1> Zapatos <small>Panel de control</small></h1>
+      <ol class="breadcrumb">
+        <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Incio</a></li>
+        <li class="active">Zapatos</li>
+      </ol>
+
+block content
+    div(class="box")
+        <div class="box-header with-border">
+            <h3 class="box-title">Todos los Zapatos</h3>
+        </div>
+        div(class="box-body")
+            div(class="row")
+                div(class="col col-md-12")
+                    table(class="table table-bordered")
+                        tr
+                            <th style="width: 10px">#</th>
+                            <th>Task</th>
+                            <th>Progress</th>
+                            <th style="width: 40px">Label</th>
+            

@@ -16,6 +16,7 @@ app.use(morgan('dev'));
 
 //Routes
 app.use('/', require('./routes/home.routes'))
+app.use('/Zapatos', require('./routes/zapatos.routes'))
 
 //Server Listen
 app.listen(app.get('PORT'), _ => console.log(`server is runing ${app.get('PORT')}`))
