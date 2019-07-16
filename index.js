@@ -5,6 +5,9 @@ const path = require('path')
 //Express
 const app = express();
 
+//Database
+require('./models/database')
+
 //Config
 app.set('PORT', process.env.PORT||3000);
 app.use(express.static(path.join(__dirname, '/public')))

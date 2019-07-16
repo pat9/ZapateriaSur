@@ -11,7 +11,8 @@ block migajas
 block content
     div(class="box")
         <div class="box-header with-border">
-            <h3 class="box-title">Todos los Zapatos</h3>
+            <h3 class="box-title">Todos los Zapatos &nbsp;&nbsp;</h3>
+            a(href="/Zapatos/Create", class="btn btn-info") Nuevo
         </div>
         div(class="box-body")
             div(class="row")
@@ -19,7 +20,15 @@ block content
                     table(class="table table-bordered")
                         tr
                             <th style="width: 10px">#</th>
-                            <th>Task</th>
-                            <th>Progress</th>
-                            <th style="width: 40px">Label</th>
+                            <th>Titulo</th>
+                            <th>Precio</th>
+                            <th style="width: 70px">Acciones</th>
+                        each zapato in Zapatos
+                            tr
+                                td= zapato._id
+                                td= zapato.titulo
+                                td= zapato.precio
+                                td
+                                    a(href="/Zapatos/Edit/"+zapato._id ) Editar&nbsp;
+                                    a(href="/Zapatos/Delete/"+zapato._id ) Eliminar
             
