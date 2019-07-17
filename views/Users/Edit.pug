@@ -1,0 +1,45 @@
+extends ../Admin.pug
+
+
+block migajas
+      <h1> Usuarios <small>Panel de control</small></h1>
+      <ol class="breadcrumb">
+        <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Incio</a></li>
+        <li class=""><a href="/Usuarios">Usuarios</a></li>
+        <li class="active">Editar</li>
+      </ol>
+
+block content
+    div(class="box")
+        <div class="box-header with-border">
+            <h3 class="box-title">Registrar nuevo usuario</h3>
+        </div>
+        div(class="box-body")
+            form(action="/Users/Edit/"+User._id, method="post")
+                div(class="row")
+                    div(class="col col-md-12")
+                        div(class="form-group")
+                            label(for="nombre") Nombre
+                            input(type="text", class="form-control",value=User.nombre, name="nombre", id="nombre", placeholder="Ingresa el nombre")
+                div(class="row")
+                    div(class="col col-md-12")
+                        div(class="form-group")
+                            label(for="apellidos") Apellidos
+                            input(type="text", class="form-control" value=User.apellidos name="apellidos", id="apellidos", placeholder="Ingresa los apellidos")
+                div(class="row")
+                    div(class="col col-md-12")
+                        div(class="form-group")
+                            label(for="correo") Correo
+                            input(type="text", class="form-control" value=User.email name="email", id="email", placeholder="Ingresa el correo")
+                div(class="row")
+                    div(class="col col-md-12")
+                        div(class="form-group")
+                            label(for="password") Contraseña
+                            input(type="password", class="form-control" value=User.password name="password", id="password", placeholder="Ingresa la contraseña")
+                div(class="row")
+                    div(class="col col-md-1")
+                        div(class="form-group")
+                            input(type="submit", class="btn btn-success" value="Guardar") 
+                    div(class="col col-md-1")
+                        a(href="/Zapatos" Class="btn btn-danger") Cancelar        
+

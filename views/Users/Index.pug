@@ -1,0 +1,34 @@
+extends ../Admin.pug
+
+
+block migajas
+      <h1> Usuarios <small>Panel de control</small></h1>
+      <ol class="breadcrumb">
+        <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Incio</a></li>
+        <li class="active">Usurios</li>
+      </ol>
+
+block content
+    div(class="box")
+        <div class="box-header with-border">
+            <h3 class="box-title">Todos los Usuarios&nbsp;&nbsp;</h3>
+            a(href="/Users/Create", class="btn btn-info") Nuevo
+        </div>
+        div(class="box-body")
+            div(class="row")
+                div(class="col col-md-12")
+                    table(class="table table-bordered")
+                        tr
+                            <th style="width: 10px">#</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th style="width: 70px">Acciones</th>
+                        each user in Users
+                            tr
+                                td= user._id
+                                td= user.nombre
+                                td= user.email
+                                td
+                                    a(href="/Users/Edit/"+user._id ) Editar&nbsp;
+                                    a(href="/Users/Delete/"+user._id ) Eliminar
+            
