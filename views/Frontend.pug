@@ -58,8 +58,10 @@ html(lang="es-mx" class="no-js")
 										<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
 									</ul>
 								</li>
-								li(class="nav-item")
-									a(class="nav-link" href="User")= User
+								if User != null
+									if User.isAdmin
+										li(class="nav-item")
+											a(class="nav-link" href="/dashboard") Panel de control
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
@@ -164,5 +166,7 @@ html(lang="es-mx" class="no-js")
 		<script src="js/countdown.js"></script>
 		<script src="js/jquery.magnific-popup.min.js"></script>
 		<script src="js/owl.carousel.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script src="js/main.js"></script>
+		script(src="/js_cart/cart_main.js")
 </body>

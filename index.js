@@ -17,6 +17,7 @@ app.set('view engine', 'pug')
 
 //Middleware
 app.use(morgan('dev'));
+app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.use(session({secret:'HEY'}))
 
@@ -24,6 +25,7 @@ app.use(session({secret:'HEY'}))
 app.use('/', require('./routes/home.routes'))
 app.use('/Zapatos', require('./routes/zapatos.routes'))
 app.use('/Users', require('./routes/users.routes'))
+app.use('/Cart', require('./routes/cart.routes'))
 
 //Server Listen
 app.listen(app.get('PORT'), _ => console.log(`server is runing ${app.get('PORT')}`))

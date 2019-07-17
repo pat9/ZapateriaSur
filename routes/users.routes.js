@@ -4,6 +4,9 @@ const router = express.Router();
 //Model
 const Users = require('../models/users')
 
+//Middlewares
+router.use(require('../middlewares/Auth'))
+
 router.get('/', async (req, res) =>{
     const AllUsers = await Users.find();
     res.render('Users/Index', {Users:AllUsers})

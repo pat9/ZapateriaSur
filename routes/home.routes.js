@@ -3,10 +3,12 @@ const path = require('path')
 
 const router = express.Router();
 const Users = require('../models/users')
+const Zapatos = require('../models/zapatos')
 
-router.get('/', (req, res) =>{
+router.get('/', async (req, res) =>{
     console.log(req.session)
-    res.render('Home/Index', {User:req.session.user});
+    const AllZapatos = await Zapatos.find();
+    res.render('Home/Index', {User:req.session.user, AllZapatos});
 })
 
 
