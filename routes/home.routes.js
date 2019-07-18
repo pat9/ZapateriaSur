@@ -13,11 +13,15 @@ router.get('/', async (req, res) =>{
 
 
 router.get('/dashboard', (req, res) =>{
-    res.render('Home/Index_Dashboard');
+    res.render('Home/Dashboard');
 })
 
 router.get('/login', (req, res) =>{
     res.render('Home/Login');
+})
+
+router.get('/register', (req, res) =>{
+    res.render('Home/Register');
 })
 
 router.post('/login', async(req, res) =>{

@@ -1,0 +1,132 @@
+extends ../Frontend.pug
+
+block content
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Carrito de compra</h1>
+                    <nav class="d-flex align-items-center">
+                        <a href="/">Inicio<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="#">Carrito</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!--================Cart Area =================-->
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            each item in Carrito.items
+                                tr(id="item_"+item.idProducto)
+                                    <td>
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                img(src=item.imagen.url width="250" height="150" alt="producto")
+                                            </div>
+                                            <div class="media-body">
+                                                p= item.titulo
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        h5= "$"+ item.precio.toFixed(2)
+                                    </td>
+                                    <td>
+                                        <div class="product_count">
+                                            input(type="text" name="qty" id="sst" maxlength="12" value=item.cantidad title="Quantity:" class="input-text qty " disabled)
+                                            button(onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;AddToCart('"+item.idProducto+"', 1); return false;" class="increase items-count" type="button")
+                                                i(class="lnr lnr-chevron-up")
+                                            button(onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) && sst > 0 ) {result.value--; RemoveToCart('"+item.idProducto+"', 1);}if(result.value==0){$('#item_"+ item.idProducto +"').remove()}; return false;" class="reduced items-count" type="button")
+                                                i(class="lnr lnr-chevron-down")
+                                        </div>
+                                    </td>
+                                    <td>
+                                        h5(id="sub_"+item.idProducto)= "$"+ item.subtotal.toFixed(2)
+                                    </td>
+                                
+                                
+                            <tr class="bottom_button">
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <h5>Subtotal</h5>
+                                    hr
+                                    <h5>IVA</h5>
+                                    hr
+                                    <h5>Envio</h5>
+                                    hr
+                                    <h5>Total</h5>
+                                </td>
+                                <td>
+                                    
+                                    h5(id="sub_carrito")= "$"+ Carrito.subtotal.toFixed(2)
+                                    hr
+                                    h5(id="iva_carrito")= "$"+ Carrito.iva.toFixed(2)
+                                    hr
+                                    h5= "$300"
+                                    hr
+                                    h5(id="total_carrito")= "$"+ (Carrito.total + 300).toFixed(2)
+                                    
+                                </td>
+                            </tr>
+                            <tr class="shipping_area">
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <h5>Entrega</h5>
+                                </td>
+                                <td>
+                                    br
+                                    <div class="shipping_box">
+                                       p Por el momento solo hacemos envios dentro de la republica mexicana, con un tiempo de entrega maximo de 3 días habiles
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="out_button_area">
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <div class="checkout_btn_inner d-flex align-items-center">
+                                        <a class="gray_btn" href="#">Continue Shopping</a>
+                                        <a class="primary-btn" href="#">Proceed to checkout</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Cart Area =================-->
