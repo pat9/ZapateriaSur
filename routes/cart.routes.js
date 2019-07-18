@@ -18,23 +18,29 @@ router.post('/add', async (req, res) =>{
     const carritos = await Cart.find({ idUser:req.session.user._id, active:true })
 
     if(carritos.length > 0){
-        var {items} = carritos[0];
+        var {_id,items} = carritos[0];
         let encontrado =  false;
 
-        items.map(item =>{
-            console.log(item._id == producto)
-            console.log(item._id)
-            console.log(producto)
-            if(item._id === producto){
-                console.log("Encontrado");
+        items = items.map(item =>{
+            if(item.idProducto == req.body.producto){
+                console.log("Entre aqui")
+                item.cantidad += cantidad;
                 encontrado = true;
+                return item;
+            }
+            else{
+                console.log("Entre aca")
+
+                return item;
             }
         })
 
         if(!encontrado){
-
+            const Zapato = await Zapatos.findById(producto)
+            const item = { idProducto: Zapato._id, precio:Zapato.precio, cantidad }
+            items.push(item);
         }
-
+        await Cart.findByIdAndUpdate(_id, {items})
         res.json({
             status:"0x200",
         })
@@ -42,7 +48,8 @@ router.post('/add', async (req, res) =>{
     else
     {
         const Zapato = await Zapatos.findById(producto)
-        const items = []; items.push(Zapato);
+        const item = { idProducto: Zapato._id, precio:Zapato.precio, cantidad }
+        const items = []; items.push(item);
         const Carrito = new Cart({idUser:req.session.user._id, items,active:true})
         await Carrito.save();
         res.json({
