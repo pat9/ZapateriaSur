@@ -22,14 +22,16 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 //Model
 const Zapatos = require('../models/zapatos')
+//Middlewares
+router.use(require('../middlewares/Auth'))
 
 router.get('/', async (req, res) =>{
     const AllZapatos = await Zapatos.find();
-    res.render('Zapatos/Index', {Zapatos:AllZapatos})
+    res.render('Zapatos/Index', {Zapatos:AllZapatos,User:req.session.user, zapatos:true})
 })
 
 router.get('/Create', (req, res) =>{
-    res.render('Zapatos/Create')
+    res.render('Zapatos/Create', {User:req.session.user, zapatos:true})
 })
 
 router.post('/Create',upload.single('imagen'), async (req,res) => {
@@ -54,7 +56,7 @@ router.post('/Create',upload.single('imagen'), async (req,res) => {
 
 router.get('/Edit/:id', async (req, res) =>{
     const Zapato = await Zapatos.findById(req.params.id)
-    res.render('Zapatos/Edit', {Zapato}) 
+    res.render('Zapatos/Edit', {Zapato,User:req.session.user, zapatos:true}) 
 })
 
 router.post('/Edit/:id',upload.single('imagen'), async(req, res) =>{

@@ -32,6 +32,10 @@ block content
                             </tr>
                         </thead>
                         <tbody>
+                            if(Carrito.items.length == 0)
+                                tr
+                                    td 
+                                        h1 Sin articulos mete algo a tu carrito
                             each item in Carrito.items
                                 tr(id="item_"+item.idProducto)
                                     <td>
@@ -117,9 +121,9 @@ block content
 
                                 </td>
                                 <td>
-                                    <div class="checkout_btn_inner d-flex align-items-center">
-                                        <a class="gray_btn" href="#">Continue Shopping</a>
-                                        <a class="primary-btn" href="#">Proceed to checkout</a>
+                                    <div class="checkout_btn_inner d-flex align-items-right">
+                                        if(Carrito.items.length > 0)
+                                            <a class="primary-btn" href="/checkout">¡Pagar!</a>
                                     </div>
                                 </td>
                             </tr>

@@ -9,15 +9,14 @@ router.use(require('../middlewares/Auth'))
 
 router.get('/', async (req, res) =>{
     const AllUsers = await Users.find();
-    res.render('Users/Index', {Users:AllUsers})
+    res.render('Users/Index', {Users:AllUsers,User:req.session.user , users:true})
 })
 
 router.get('/Create', (req, res) =>{
-    res.render('Users/Create')
+    res.render('Users/Create',{User:req.session.user , users:true})
 })
 
 router.post('/Create', async (req,res) => {
-    console.log(req.body)
     const { nombre, apellidos, email, password } = req.body;
 
     const User = new Users({nombre, apellidos, email, password, isAdmin:true});
@@ -28,7 +27,7 @@ router.post('/Create', async (req,res) => {
 
 router.get('/Edit/:id', async (req, res) =>{
     const User = await Users.findById(req.params.id)
-    res.render('Users/Edit', {User}) 
+    res.render('Users/Edit', {User,User:req.session.user , users:true}) 
 })
 
 router.post('/Edit/:id', async(req, res) =>{

@@ -10,7 +10,7 @@ const Auth = require('../middlewares/Auth')
 
 router.get('/', Auth, async (req, res) =>{
     const carritos = await Cart.find({ idUser:req.session.user._id, active:true })
-    res.render('Cart/Index', {Carrito:carritos[0]}) 
+    res.render('Cart/Index', {Carrito:carritos[0],User:req.session.user}) 
 })
 
 router.post('/add', async (req, res) =>{

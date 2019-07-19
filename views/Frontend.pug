@@ -58,6 +58,9 @@ html(lang="es-mx" class="no-js")
 										<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
 									</ul>
 								</li>
+								if User != null
+									li(class="nav-item submenu dropdown")
+										a(href="/cart" class="nav-link") Carrito
 								if User == null
 									li(class="nav-item submenu dropdown")
 										a(href="/login" class="nav-link") Iniciar sesión
