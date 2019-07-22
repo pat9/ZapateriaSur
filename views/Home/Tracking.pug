@@ -1,0 +1,40 @@
+extends ../Frontend.pug
+
+block content
+    <section class="banner-area organic-breadcrumb">
+    <div class="container">
+    <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+    <div class="col-first">
+    <h1>Rastrear orden</h1>
+    <nav class="d-flex align-items-center">
+    <a href="/">Inicio<span class="lnr lnr-arrow-right"></span></a>
+    <a href="#">Rastreo de orden</a>
+    </nav>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <section class="tracking_box_area section_gap">
+    <div class="container">
+    <div class="tracking_box_inner">
+    <p>Para que podamos rastrear tu orden por favor escribe el id de orden y el correo electronico que ingresaste al momento de la compra.</p>
+    <div class="row tracking_form">
+    <div class="col-md-12 form-group">
+    <input type="text" class="form-control" id="order" name="order" placeholder="Orden ID" onfocus="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = ''" onblur="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = 'Order ID'">
+    </div>
+    <div class="col-md-12 form-group">
+    <input type="email" class="form-control" id="email" name="email" placeholder="Correo Electronico" onfocus="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = ''" onblur="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = 'Billing Email Address'">
+    </div>
+    <div class="col-md-12 form-group">
+    <button type="button" onClick="Rastrear()" class="primary-btn">Rastrear</button>
+    </div>
+    </form>
+
+    <div>
+        <p id="mensaje_respuesta"></p>
+    </div>
+
+    </div>
+    </div>
+    </section>

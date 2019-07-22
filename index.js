@@ -26,6 +26,7 @@ app.use('/', require('./routes/home.routes'))
 app.use('/Zapatos', require('./routes/zapatos.routes'))
 app.use('/Users', require('./routes/users.routes'))
 app.use('/Cart', require('./routes/cart.routes'))
+app.use('/Ventas', require('./routes/ventas.routes'))
 
 //Server Listen
 app.listen(app.get('PORT'), _ => console.log(`server is runing ${app.get('PORT')}`))

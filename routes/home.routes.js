@@ -171,4 +171,20 @@ router.get('/success', Auth, async (req, res) =>{
 
 });
 
+router.get('/cancel',Auth, async(req,res)=>{
+    const token = req.query.token; 
+    await Ventas.deleteOne({cancelId:token})
+    res.render('Home/Cancel',{User:req.session.user})
+});
+
+router.get('/tracking', async(req, res)=>{
+    res.render('Home/Tracking',{User:req.session.user} )
+})
+router.post('/tracking', async(req, res)=>{
+    const {OrdenID} = req.body;
+    const Venta = await Ventas.findById(OrdenID)
+    console.log(Venta)
+    res.json(Venta);
+})
+
 module.exports = router;
