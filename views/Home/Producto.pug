@@ -1,0 +1,58 @@
+extends ../Frontend.pug
+
+block content
+    <section class="banner-area organic-breadcrumb">
+    <div class="container">
+    <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+    <div class="col-first">
+    <h1>Producto</h1>
+    <nav class="d-flex align-items-center">
+    <a href="/">Incio<span class="lnr lnr-arrow-right"></span></a>
+    <a href="/productos">Productos<span class="lnr lnr-arrow-right"></span></a>
+    <a href="#">Detalles</a>
+    </nav>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div class="product_image_area">
+    <div class="container">
+    <div class="row s_product_inner">
+    <div class="col-lg-6">
+    <div class="s_Product_carousel owl-carousel owl-theme owl-loaded">
+    <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-2160px, 0px, 0px); transition: all 0.25s ease 0s; width: 3780px;"><div class="owl-item cloned" style="width: 540px; margin-right: 0px;"><div class="single-prd-item">
+    <img class="img-fluid" src="#{zapato.imagen.url}" alt="">
+    </div></div><div class="owl-item cloned" style="width: 540px; margin-right: 0px;"><div class="single-prd-item">
+    <img class="img-fluid" src="#{zapato.imagen.url}" alt="">
+    </div></div><div class="owl-item active" style="width: 540px; margin-right: 0px;"><div class="single-prd-item">
+    <img class="img-fluid" src="#{zapato.imagen.url}" alt="">
+    </div></div><div class="owl-item" style="width: 540px; margin-right: 0px;"><div class="single-prd-item">
+    <img class="img-fluid" src="#{zapato.imagen.url}" alt="">
+    </div></div><div class="owl-item" style="width: 540px; margin-right: 0px;"><div class="single-prd-item">
+    <img class="img-fluid" src="#{zapato.imagen.url}" alt="">
+    </div></div><div class="owl-item cloned" style="width: 540px; margin-right: 0px;"><div class="single-prd-item">
+    <img class="img-fluid" src="#{zapato.imagen.url}" alt="">
+    </div></div><div class="owl-item cloned" style="width: 540px; margin-right: 0px;"><div class="single-prd-item">
+    <img class="img-fluid" src="#{zapato.imagen.url}" alt="">
+    </div></div></div></div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="display: none;">prev</div><div class="owl-next" style="display: none;">next</div></div><div class="owl-dots" style=""><div class="owl-dot"><span></span></div><div class="owl-dot"><span></span></div><div class="owl-dot active"><span></span></div></div></div></div>
+    </div>
+    <div class="col-lg-5 offset-lg-1">
+    <div class="s_product_text">
+    <h3>#{zapato.titulo}</h3>
+    <h2>$#{zapato.precio.toFixed(2)}</h2>
+    <ul class="list">
+    <li><a href="#"><span>Disponibles</span> : #{zapato.stock}</a></li>
+    </ul>
+    <p>#{zapato.descripcion}</p>
+
+    <div class="card_area d-flex align-items-center">
+    <a class="primary-btn"  href="javascript:AddToCart('#{zapato._id}',1)" >Añadir al carrito</a>
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>

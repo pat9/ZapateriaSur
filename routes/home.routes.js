@@ -29,6 +29,11 @@ router.get('/productos',async(req, res)=>{
     res.render('Home/Productos', {User:req.session.user,zapatos})
 })
 
+router.get('/producto/:id', async(req, res)=>{
+    const zapato = await Zapatos.findById(req.params.id)
+    res.render('Home/Producto', {User:req.session.user,zapato})
+})
+
 
 router.get('/dashboard',Auth, (req, res) =>{
     if(!req.session.user.isAdmin) res.redirect("/")
