@@ -21,6 +21,14 @@ function AddToCart(id, cantidad){
                     footer: '<a href="/login">Inciar Sesión</a>'
                 })
             }
+            if(json.err === "0x405"){
+                Swal.fire({
+                    type: 'error',
+                    title: 'Se execede de nuestro stock',
+                    text: 'Tu pedido se excede del stock',
+                    
+                })
+            }
         }
         if(json.status){
             

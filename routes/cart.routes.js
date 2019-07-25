@@ -23,6 +23,9 @@ router.post('/add', async (req, res) =>{
         return;
     }
     
+    const revision = await Zapatos.findById(req.body.producto);
+    
+
     const { producto, cantidad } = req.body;
     const carritos = await Cart.find({ idUser:req.session.user._id, active:true })
 
@@ -30,8 +33,17 @@ router.post('/add', async (req, res) =>{
         var {_id,items} = carritos[0];
         let encontrado =  false;
         let suma = 0;
+        let error = false;
         items = items.map(item =>{
             if(item.idProducto == req.body.producto){
+                if(item.cantidad+cantidad > revision.stock){
+                    res.json({
+                        err:"0x405",
+                        msg:"Execde el stock"
+                    })
+                    error=true;
+                    
+                }
                 item.cantidad += cantidad;
                 encontrado = true;
                 suma+= item.cantidad * item.precio;
@@ -43,6 +55,7 @@ router.post('/add', async (req, res) =>{
                 return item;
             }
         })
+        if(error)return;
 
         if(!encontrado){
             const Zapato = await Zapatos.findById(producto)

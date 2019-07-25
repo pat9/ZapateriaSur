@@ -8,7 +8,7 @@ const Ventas = require("../models/ventas")
 router.use(require('../middlewares/Auth'))
 
 router.get("/", async(req, res)=>{
-    
+    res.render('Ventas/Index')
 })
 
 

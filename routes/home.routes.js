@@ -165,6 +165,12 @@ router.get('/success', Auth, async (req, res) =>{
             await Cart.updateOne({idUser:req.session.user._id, active:true},{active:false})
 
             const Venta = await Ventas.find({paymentId})
+
+            Venta.items.map(async item => {
+                const Zapato = await Zapatos.findById(item.sku)
+                await Zapatos.updateOne({_id:item.sku}, {stock:Zapato.stock-item.quantity})
+            })
+
             res.render('Home/Success',{User:req.session.user, Venta:Venta[0]})
         }
     })
