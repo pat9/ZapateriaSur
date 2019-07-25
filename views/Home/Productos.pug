@@ -1,0 +1,47 @@
+extends ../Frontend.pug
+
+block content
+
+    <section class="banner-area organic-breadcrumb">
+    <div class="container">
+    <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+    <div class="col-first">
+    <h1>Zapatos</h1>
+    <nav class="d-flex align-items-center">
+    <a href="/">Inicio<span class="lnr lnr-arrow-right"></span></a>
+    <a href="#">Zapatos</a>
+    </nav>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div class="col-xl-8 col-lg-8 col-md-8">
+    <section class="lattest-product-area pb-40 category-list">
+    <div class="row">
+        for Zapato in zapatos
+            <div class="col-lg-4 col-md-6">
+            <div class="single-product">
+            <img class="img-fluid" src="#{Zapato.imagen.url}" width="250" heigth="250" alt="#{Zapato.titulo}">
+            <div class="product-details">
+            <h6>#{Zapato.titulo}</h6>
+            <div class="price">
+            <h6>$#{Zapato.precio.toFixed(2)}</h6>
+            </div>
+            <div class="prd-bottom">
+            <a href="javascript:AddToCart('#{Zapato._id}',1)" class="social-info">
+            <span class="ti-bag"></span>
+            <p class="hover-text">Añadir</p>
+            </a>
+            <a href="" class="social-info">
+            <span class="lnr lnr-move"></span>
+            <p class="hover-text">Detalles</p>
+            </a>
+            </div>
+            </div>
+            </div>
+            </div>
+
+    
+    </section>
+    </div>

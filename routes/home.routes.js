@@ -24,6 +24,11 @@ router.get('/', async (req, res) =>{
     res.render('Home/Index', {User:req.session.user, AllZapatos});
 })
 
+router.get('/productos',async(req, res)=>{
+    const zapatos = await Zapatos.find({stock:{$gt:0}});
+    res.render('Home/Productos', {User:req.session.user,zapatos})
+})
+
 
 router.get('/dashboard',Auth, (req, res) =>{
     if(!req.session.user.isAdmin) res.redirect("/")
