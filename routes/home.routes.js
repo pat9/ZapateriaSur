@@ -94,22 +94,21 @@ router.post('/checkout',Auth, async(req, res)=>{
     const Items = carritos[0].items.map(item =>{
         return {
             "name": item.titulo,
-            "sku": item._id,
+            "sku": item.idProducto,
             "price":item.precio.toFixed(2),
             "quantity":item.cantidad,
             "currency":"MXN"
         }
     })
-
-
+ 
     var create_payment_json = {
         "intent": "sale",
         "payer": {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "https://zapateriasur.herokuapp.com/success",
-            "cancel_url": "https://zapateriasur.herokuapp.com/cancel"
+            "return_url": "http://localhost:3000/success", /*"https://zapateriasur.herokuapp.com/*/
+            "cancel_url": "http://localhost:3000/cancel"
         },
         "transactions": [{
             "item_list": {
@@ -171,9 +170,8 @@ router.get('/success', Auth, async (req, res) =>{
             await Ventas.updateOne({paymentId: paymentId}, {status:1, PayerID})
             await Cart.updateOne({idUser:req.session.user._id, active:true},{active:false})
 
-            const Venta = await Ventas.findOne({paymentId})
-
-            Venta.items.map(async item => {
+            const Venta = await Ventas.find({paymentId})
+            Venta[0].items.map(async item => {
                 const Zapato = await Zapatos.findById(item.sku)
                 await Zapatos.updateOne({_id:item.sku}, {stock:Zapato.stock-item.quantity})
             })

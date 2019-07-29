@@ -8,7 +8,18 @@ const Ventas = require("../models/ventas")
 router.use(require('../middlewares/Auth'))
 
 router.get("/", async(req, res)=>{
-    res.render('Ventas/Index')
+    const ventas = await Ventas.aggregate([
+        { $lookup:
+           {
+             from: 'users',
+             localField: 'idUser',
+             foreignField: '_id',
+             as: 'usuario'
+           }
+         }
+        ])
+    console.log(ventas[0].usuario)
+    res.render('Ventas/Index',{User:req.session.user, ventas})
 })
 
 
