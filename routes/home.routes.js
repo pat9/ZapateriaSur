@@ -132,7 +132,6 @@ router.post('/checkout',Auth, async(req, res)=>{
         if (error) {
             throw error;
         } else {
-            console.log(payment)
             for(let i=0; i<payment.links.length; i++){
                 if(payment.links[i].rel === "approval_url"){
                     const Venta = new Ventas({idUser:req.session.user._id, add1,add2, ciudad, phone, zip, items:Items, subtotal:carrito.subtotal, iva:carrito.subtotal, total:(carrito.total+300), paymentId:payment.id, status:0})
@@ -168,13 +167,11 @@ router.get('/success', Auth, async (req, res) =>{
             throw error;
         }
         else{
-            console.log("Payment Response");
-            console.log(JSON.stringify(payment))
-            
+                        
             await Ventas.updateOne({paymentId: paymentId}, {status:1, PayerID})
             await Cart.updateOne({idUser:req.session.user._id, active:true},{active:false})
 
-            const Venta = await Ventas.find({paymentId})
+            const Venta = await Ventas.findOne({paymentId})
 
             Venta.items.map(async item => {
                 const Zapato = await Zapatos.findById(item.sku)
