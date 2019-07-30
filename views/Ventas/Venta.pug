@@ -14,23 +14,21 @@ block content
             div(class="row")
                 div(class="col-md-4")
                     h3 Comprador:
-                    span #{Venta.usuario[0].nombre}
+                    h4= Venta.usuario[0].nombre
+            br
             div(class="row")
                 div(class="col col-md-12")
                     table(class="table table-bordered")
                         tr
-                            <th style="width: 10px">Id de pedido</th>
-                            <th>Comprador</th>
-                            <th>Id de pago Paypal</th>
-                            <th>Total</th>
-                            <th style="width: 70px">Acciones</th>
-                        each venta in ventas
+                            <th style="width: 10px">Sku</th>
+                            <th>Titulo</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                        each item in Venta.items
                             tr
-                                td= venta._id
-                                td= venta.usuario[0].nombre +" "+ venta.usuario[0].apellidos
-                                td= venta.paymentId
-                                td= "$"+venta.total
-                                td
-                                    a(href="/Zapatos/Edit/" ) Editar&nbsp;
-                                    a(href="/Zapatos/Delete/" ) Eliminar
+                                td= item.sku
+                                td= item.name
+                                td= item.price
+                                td= item.quantity
+                               
             

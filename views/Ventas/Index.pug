@@ -28,8 +28,7 @@ block content
                                 td= venta.paymentId
                                 td= "$"+venta.total
                                 td
-                                    a(href="/Zapatos/Edit/" ) Editar&nbsp;
-                                    a(href="/Zapatos/Delete/" ) Eliminar
+                                    a(href="/Ventas/"+venta._id ) Detalles
             
 block scripts
     script(src="/js_ventas/index.js")
