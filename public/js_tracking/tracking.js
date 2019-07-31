@@ -15,5 +15,12 @@ function Rastrear(){
                 'info'
               )
         }
+        if(json.status == 2){
+            Swal.fire(
+                'Orden enviada',
+                'Tu orden esta en camino',
+                'info'
+              )
+        }
     })
 }

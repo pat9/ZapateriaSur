@@ -38,8 +38,15 @@ router.get('/:id', async(req, res)=>{
       }
     }
   ])
-    console.log(Venta)
-res.render('Ventas/Venta',{User:req.session.user, Venta:Venta[0],ventas:true})
+  res.render('Ventas/Venta',{User:req.session.user, Venta:Venta[0],ventas:true})
+})
+
+router.get('/Cambiar/:id', async(req, res)=>{
+
+  await Ventas.updateOne({_id:req.params.id}, {status:2});
+
+  res.json("OK")
+
 })
 
 module.exports = router;
