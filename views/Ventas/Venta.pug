@@ -33,7 +33,7 @@ block content
             div(class="row")
                  div(class="col-md-4")
                     if Venta.status != 2
-                        <button class="btn btn-success" onclick="CambiarStatus('#{Venta.id}')">Cambiar status a enviado</button>
+                        <button class="btn btn-success" onclick="CambiarStatus('#{Venta._id}')">Cambiar status a enviado</button>
 
 block scripts
     script(src="/js_ventas/index.js")       
