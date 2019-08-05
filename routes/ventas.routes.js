@@ -9,7 +9,7 @@ const Ventas = require("../models/ventas")
 router.use(require('../middlewares/Auth'))
 
 router.get("/", async(req, res)=>{
-    const ventas = await Ventas.aggregate([{"$match":{"status" : {$gt:["status", 0]}}},
+    const ventas = await Ventas.aggregate([{"$match":{"status" : {$gt:0}}},
         { $lookup:
            {
              from: 'users',
