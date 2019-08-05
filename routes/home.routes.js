@@ -94,22 +94,21 @@ router.post('/checkout',Auth, async(req, res)=>{
     const Items = carritos[0].items.map(item =>{
         return {
             "name": item.titulo,
-            "sku": item._id,
+            "sku": item.idProducto,
             "price":item.precio.toFixed(2),
             "quantity":item.cantidad,
             "currency":"MXN"
         }
     })
-
-
+ 
     var create_payment_json = {
         "intent": "sale",
         "payer": {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "https://zapateriasur.herokuapp.com/success",
-            "cancel_url": "https://zapateriasur.herokuapp.com/cancel"
+            "return_url": "https://zapateriasur.herokuapp.com/", /*"https://zapateriasur.herokuapp.com/*/
+            "cancel_url": "https://zapateriasur.herokuapp.com/"
         },
         "transactions": [{
             "item_list": {
@@ -132,7 +131,6 @@ router.post('/checkout',Auth, async(req, res)=>{
         if (error) {
             throw error;
         } else {
-            console.log(payment)
             for(let i=0; i<payment.links.length; i++){
                 if(payment.links[i].rel === "approval_url"){
                     const Venta = new Ventas({idUser:req.session.user._id, add1,add2, ciudad, phone, zip, items:Items, subtotal:carrito.subtotal, iva:carrito.subtotal, total:(carrito.total+300), paymentId:payment.id, status:0})
@@ -168,15 +166,12 @@ router.get('/success', Auth, async (req, res) =>{
             throw error;
         }
         else{
-            console.log("Payment Response");
-            console.log(JSON.stringify(payment))
-            
+                        
             await Ventas.updateOne({paymentId: paymentId}, {status:1, PayerID})
             await Cart.updateOne({idUser:req.session.user._id, active:true},{active:false})
 
             const Venta = await Ventas.find({paymentId})
-
-            Venta.items.map(async item => {
+            Venta[0].items.map(async item => {
                 const Zapato = await Zapatos.findById(item.sku)
                 await Zapatos.updateOne({_id:item.sku}, {stock:Zapato.stock-item.quantity})
             })

@@ -8,24 +8,27 @@ block migajas
 block content
     div(class="box")
         <div class="box-header with-border">
-            <h3 class="box-title">Todos los Zapatos &nbsp;&nbsp;</h3>
-            a(href="/Zapatos/Create", class="btn btn-info") Nuevo
+            <h3 class="box-title">Todas las Ventas &nbsp;&nbsp;</h3>
+            //a(href="/Zapatos/Create", class="btn btn-info") Nuevo
         </div>
         div(class="box-body")
             div(class="row")
                 div(class="col col-md-12")
                     table(class="table table-bordered")
                         tr
-                            <th style="width: 10px">#</th>
-                            <th>Titulo</th>
-                            <th>Precio</th>
+                            <th style="width: 10px">Id de pedido</th>
+                            <th>Comprador</th>
+                            <th>Id de pago Paypal</th>
+                            <th>Total</th>
                             <th style="width: 70px">Acciones</th>
-                        each zapato in Zapatos
+                        each venta in ventas
                             tr
-                                td= zapato._id
-                                td= zapato.titulo
-                                td= zapato.precio
+                                td= venta._id
+                                td= venta.usuario[0].nombre +" "+ venta.usuario[0].apellidos
+                                td= venta.paymentId
+                                td= "$"+venta.total
                                 td
-                                    a(href="/Zapatos/Edit/"+zapato._id ) Editar&nbsp;
-                                    a(href="/Zapatos/Delete/"+zapato._id ) Eliminar
+                                    a(href="/Ventas/"+venta._id ) Detalles
             
+block scripts
+    script(src="/js_ventas/index.js")

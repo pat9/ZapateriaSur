@@ -1,0 +1,40 @@
+extends ../Admin.pug
+block migajas
+      <h1> Ventas <small>Panel de control</small></h1>
+      <ol class="breadcrumb">
+        <li><a href="/dashboard"><i class="fa fa-dashboard"></i> Incio</a></li>
+        <li class="active">Ventas</li>
+      </ol>
+block content
+    div(class="box")
+        <div class="box-header with-border">
+            <h3 class="box-title">Venta #{Venta._id} &nbsp;&nbsp;</h3>
+        </div>
+        div(class="box-body")
+            div(class="row")
+                div(class="col-md-4")
+                    h3 Comprador:
+                    h4= Venta.usuario[0].nombre
+            br
+            div(class="row")
+                div(class="col col-md-12")
+                    table(class="table table-bordered")
+                        tr
+                            <th style="width: 10px">Sku</th>
+                            <th>Titulo</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                        each item in Venta.items
+                            tr
+                                td= item.sku
+                                td= item.name
+                                td= item.price
+                                td= item.quantity
+            div(class="row")
+                 div(class="col-md-4")
+                    if Venta.status != 2
+                        <button class="btn btn-success" onclick="CambiarStatus('#{Venta._id}')">Cambiar status a enviado</button>
+
+block scripts
+    script(src="/js_ventas/index.js")       
+            
