@@ -107,8 +107,8 @@ router.post('/checkout',Auth, async(req, res)=>{
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "https://zapateriasur.herokuapp.com/", /*"https://zapateriasur.herokuapp.com/*/
-            "cancel_url": "https://zapateriasur.herokuapp.com/"
+            "return_url": "https://zapateriasur.herokuapp.com/success", /*"https://zapateriasur.herokuapp.com/*/
+            "cancel_url": "https://zapateriasur.herokuapp.com/cancel"
         },
         "transactions": [{
             "item_list": {
